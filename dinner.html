@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>dinner date</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 🔥 NEW STYLE GOES HERE -->
+  <style>
+body {
+  margin: 0;
+  display: flex;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+
+  /* Romantic pixel wall */
+  background:
+    linear-gradient(#ffc8dd, #ffc8dd),
+    repeating-linear-gradient(
+      0deg,
+      #f8b6cc 0px,
+      #f8b6cc 20px,
+      #f3a6c4 20px,
+      #f3a6c4 40px
+    );
+
+  background-blend-mode: multiply;
+}
+
+
+/* Curtain */
+.curtain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.curtain-panel {
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    #8d0b3d 0%,
+    #c9184a 25%,
+    #8d0b3d 50%,
+    #c9184a 75%,
+    #8d0b3d 100%
+  );
+  background-size: 40px 100%;
+  transition: transform 2s ease-in-out;
+}
+
+.left-curtain {
+  transform: translateX(-100%);
+}
+
+.right-curtain {
+  transform: translateX(100%);
+}
+
+.curtain.active .left-curtain {
+  transform: translateX(0);
+}
+
+.curtain.active .right-curtain {
+  transform: translateX(0);
+}
+
+
+/* Layout */
+.scene {
+  flex: 3;
+  position: relative;
+  height: 100vh;       /* 👈 important */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scene::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: #d8a47f;
+  z-index: 0;
+}
+
+
+.right-panel {
+  flex: 1;
+  background: #ffafcc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+}
+
+.right-panel button {
+  width: 140px;
+  padding: 12px;
+  border-radius: 20px;
+  background: #ff4d8d;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.right-panel button:hover {
+  transform: scale(1.1);
+}
+
+/* Table */
+.table {
+  width: 300px;
+  height: 25px;
+  background: #8d5524;
+  position: absolute;
+  bottom: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+
+}
+
+/* Candle */
+.candle {
+  width: 8px;
+  height: 35px;
+  background: white;
+  position: absolute;
+  bottom: 205px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+
+}
+
+.candle::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 18px;
+  background: orange;
+  border-radius: 50%;
+  animation: flicker 0.3s infinite alternate;
+}
+
+@keyframes flicker {
+  0% { transform: translateX(-50%) scale(1); background: orange; }
+  100% { transform: translateX(-50%) scale(1.2); background: yellow; }
+}
+
+
+/* Pizza */
+.pizza {
+  width: 0;
+  height: 0;
+  border-left: 28px solid transparent;
+  border-right: 28px solid transparent;
+  border-bottom: 50px solid #f4a261;
+  position: absolute;
+  bottom: 205px;
+  z-index: 2;
+
+}
+
+.pizza::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -18px;
+  width: 12px;
+  height: 12px;
+  background: #d62828;
+  border-radius: 50%;
+  box-shadow:
+    18px 8px 0 #d62828,
+    5px 20px 0 #d62828,
+    22px 25px 0 #d62828;
+}
+
+
+.pizza.left { left: 40%; }
+.pizza.right { right: 40%; }
+
+
+/* Cake */
+.cake {
+  position: absolute;
+  bottom: 210px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 60px;
+  display: none;
+  z-index: 5;
+}
+
+/* Cake bottom */
+.cake-bottom {
+  width: 100px;
+  height: 40px;
+  background: #ff8fab;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 0;
+}
+
+/* Frosting */
+.cake-top {
+  width: 100px;
+  height: 20px;
+  background: white;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  top: 0;
+}
+
+/* Candle */
+.cake-candle {
+  width: 8px;
+  height: 25px;
+  background: white;
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cake-candle::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 18px;
+  background: orange;
+  border-radius: 50%;
+  animation: flicker 0.3s infinite alternate;
+}
+
+/* Cake cut animation */
+.cake.cut .cake-top {
+  transform: translateX(-60px) rotate(-5deg);
+}
+
+.cake.cut .cake-bottom {
+  transform: translateX(60px) rotate(5deg);
+}
+
+
+
+/* Stickman */
+/* Stickman */
+.stickman {
+  position: absolute;
+  bottom: 180px;
+  width: 120px;
+  height: 200px;
+}
+
+/* Face */
+.face {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+/* Body */
+.body {
+  width: 4px;
+  height: 80px;
+  background: black;
+  position: absolute;
+  top: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Arms */
+.arms {
+  width: 50px;
+  height: 4px;
+  background: black;
+  position: absolute;
+  top: 110px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Legs */
+.legs {
+  width: 55px;
+  height: 4px;
+  background: black;
+  position: absolute;
+  top: 170px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Positioning */
+.left-man { left: 22%; }
+.right-man { right: 22%; }
+
+
+/* Floating Emojis */
+.emoji {
+  position: absolute;
+  font-size: 28px;
+  pointer-events: none;
+  animation: floatCrazy 5s linear forwards;
+}
+
+@keyframes floatCrazy {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translate(30px, -60px) rotate(20deg) scale(1.3);
+  }
+  50% {
+    transform: translate(-40px, -120px) rotate(-30deg) scale(0.8);
+  }
+  75% {
+    transform: translate(50px, -180px) rotate(45deg) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-20px, -250px) rotate(90deg) scale(0.5);
+  }
+}
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<!-- Curtain -->
+<div class="curtain" id="curtain">
+  <div class="curtain-panel left-curtain"></div>
+  <div class="curtain-panel right-curtain"></div>
+</div>
+
+
+<!-- Scene -->
+<div class="scene">
+
+  <div class="table"></div>
+  <div class="candle"></div>
+  <div class="pizza left"></div>
+  <div class="pizza right"></div>
+  <div class="cake" id="cake">
+      <div class="cake-top"></div>
+      <div class="cake-bottom"></div>
+      <div class="cake-candle"></div>
+  </div>
+
+  <!-- LEFT STICKMAN -->
+  <div class="stickman left-man" id="leftMan">
+    <img src="assets/aish.png" class="face">
+    <div class="body"></div>
+    <div class="arms"></div>
+    <div class="legs"></div>
+  </div>
+
+  <!-- RIGHT STICKMAN -->
+  <div class="stickman right-man" id="rightMan">
+    <img src="assets/soham.png" class="face">
+    <div class="body"></div>
+    <div class="arms"></div>
+    <div class="legs"></div>
+  </div>
+
+</div>
+
+<!-- RIGHT PANEL -->
+<div class="right-panel">
+  <button onclick="kiss()">💋 Kiss</button>
+  <button onclick="hug()">🤗 Hug</button>
+  <button onclick="cake()">🎂 Cake</button>
+  <button onclick="exitGame()">🚪 Exit</button>
+</div>
+
+<!-- 🔥 NEW SCRIPT GOES HERE -->
+<script>
+let cakeCut = false;
+let animationRunning = false;
+
+function floatEmoji(type) {
+  const scene = document.querySelector(".scene");
+
+  let emojis = [];
+
+  if (type === "kiss") emojis = ["💋", "💖", "❤️", "😘"];
+  if (type === "hug") emojis = ["🤗", "💞", "💕", "❤️"];
+  if (type === "heart") emojis = ["💖", "💘", "💕", "❤️"];
+
+  for (let i = 0; i < 20; i++) {   // 👈 MANY EMOJIS
+    let emoji = document.createElement("div");
+    emoji.className = "emoji";
+
+    emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
+
+    // Random positions around center
+    emoji.style.left = (window.innerWidth / 2 + (Math.random() * 200 - 100)) + "px";
+    emoji.style.bottom = (200 + Math.random() * 100) + "px";
+
+    scene.appendChild(emoji);
+    setTimeout(() => emoji.remove(), 5000);
+  }
+}
+
+function moveCloser(type) {
+  if (animationRunning) return;
+  animationRunning = true;
+
+  let left = document.getElementById("leftMan");
+  let right = document.getElementById("rightMan");
+
+  left.style.left = "40%";
+  right.style.right = "40%";
+
+  // Start emoji explosion
+  floatEmoji(type);
+
+  // Stay close for 5 seconds
+  setTimeout(() => {
+    left.style.left = "28%";
+    right.style.right = "28%";
+    animationRunning = false;
+  }, 5000);
+}
+
+function kiss() {
+  moveCloser("kiss");
+}
+
+function hug() {
+  moveCloser("hug");
+}
+
+function cake() {
+  document.getElementById("cake").style.display = "block";
+  cakeCut = true;
+
+  setTimeout(() => {
+    document.getElementById("curtain").classList.add("active");
+  }, 4000);
+
+  setTimeout(() => {
+    window.location.href = "ending.html";
+  }, 6000);
+}
+
+function exitGame() {
+  if (!cakeCut) {
+    alert("you can only exit when you cut the cake");
+  }
+}
+</script>
+
+
+</body>
+</html>
+
