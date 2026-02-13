@@ -272,6 +272,8 @@ body {
   bottom: 180px;
   width: 120px;
   height: 200px;
+  transition: left 0.5s ease, right 0.5s ease;
+
 }
 
 
@@ -443,8 +445,8 @@ function moveCloser(type) {
   let left = document.getElementById("leftMan");
   let right = document.getElementById("rightMan");
 
-  left.style.left = "40%";
-  right.style.right = "40%";
+  left.style.left = "48%";
+  right.style.right = "48%";
 
   
   floatEmoji(type);

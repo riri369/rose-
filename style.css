@@ -68,6 +68,11 @@ img {
   cursor: pointer;
 }
 
+.stickman {
+  transition: transform 0.5s ease;
+}
+
+
 @keyframes wiggle {
   0% { transform: rotate(0deg); }
   25% { transform: rotate(8deg); }
@@ -122,4 +127,15 @@ img {
     width: 90%;
   }
 
+}
+
+
+.stickman.left.kiss,
+.stickman.left.hug {
+  transform: translateX(150px);
+}
+
+.stickman.right.kiss,
+.stickman.right.hug {
+  transform: translateX(-150px);
 }
