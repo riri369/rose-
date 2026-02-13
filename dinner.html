@@ -6,7 +6,7 @@
 
   <link rel="stylesheet" href="style.css">
 
-  <!-- 🔥 NEW STYLE GOES HERE -->
+
   <style>
 body {
   margin: 0;
@@ -29,7 +29,7 @@ body {
 }
 
 
-/* Curtain */
+
 .curtain {
   position: fixed;
   top: 0;
@@ -73,7 +73,7 @@ body {
 }
 
 
-/* Layout */
+
 .scene {
   flex: 3;
   position: relative;
@@ -121,7 +121,7 @@ body {
   transform: scale(1.1);
 }
 
-/* Table */
+
 .table {
   width: 300px;
   height: 25px;
@@ -134,7 +134,7 @@ body {
 
 }
 
-/* Candle */
+
 .candle {
   width: 8px;
   height: 35px;
@@ -166,7 +166,7 @@ body {
 }
 
 
-/* Pizza */
+
 .pizza {
   width: 0;
   height: 0;
@@ -199,7 +199,7 @@ body {
 .pizza.right { right: 40%; }
 
 
-/* Cake */
+
 .cake {
   position: absolute;
   bottom: 210px;
@@ -211,7 +211,7 @@ body {
   z-index: 5;
 }
 
-/* Cake bottom */
+
 .cake-bottom {
   width: 100px;
   height: 40px;
@@ -221,7 +221,7 @@ body {
   bottom: 0;
 }
 
-/* Frosting */
+
 .cake-top {
   width: 100px;
   height: 20px;
@@ -231,7 +231,7 @@ body {
   top: 0;
 }
 
-/* Candle */
+
 .cake-candle {
   width: 8px;
   height: 25px;
@@ -255,7 +255,7 @@ body {
   animation: flicker 0.3s infinite alternate;
 }
 
-/* Cake cut animation */
+
 .cake.cut .cake-top {
   transform: translateX(-60px) rotate(-5deg);
 }
@@ -266,8 +266,7 @@ body {
 
 
 
-/* Stickman */
-/* Stickman */
+
 .stickman {
   position: absolute;
   bottom: 180px;
@@ -275,7 +274,7 @@ body {
   height: 200px;
 }
 
-/* Face */
+
 .face {
   width: 120px;
   height: 120px;
@@ -288,7 +287,7 @@ body {
   z-index: 3;
 }
 
-/* Body */
+
 .body {
   width: 4px;
   height: 80px;
@@ -299,7 +298,7 @@ body {
   transform: translateX(-50%);
 }
 
-/* Arms */
+
 .arms {
   width: 50px;
   height: 4px;
@@ -310,7 +309,7 @@ body {
   transform: translateX(-50%);
 }
 
-/* Legs */
+
 .legs {
   width: 55px;
   height: 4px;
@@ -321,12 +320,12 @@ body {
   transform: translateX(-50%);
 }
 
-/* Positioning */
+
 .left-man { left: 22%; }
 .right-man { right: 22%; }
 
 
-/* Floating Emojis */
+
 .emoji {
   position: absolute;
   font-size: 28px;
@@ -362,14 +361,14 @@ body {
 <body>
 
 
-<!-- Curtain -->
+
 <div class="curtain" id="curtain">
   <div class="curtain-panel left-curtain"></div>
   <div class="curtain-panel right-curtain"></div>
 </div>
 
 
-<!-- Scene -->
+
 <div class="scene">
 
   <div class="table"></div>
@@ -382,7 +381,7 @@ body {
       <div class="cake-candle"></div>
   </div>
 
-  <!-- LEFT STICKMAN -->
+  
   <div class="stickman left-man" id="leftMan">
     <img src="assets/aish.png" class="face">
     <div class="body"></div>
@@ -390,7 +389,7 @@ body {
     <div class="legs"></div>
   </div>
 
-  <!-- RIGHT STICKMAN -->
+  
   <div class="stickman right-man" id="rightMan">
     <img src="assets/soham.png" class="face">
     <div class="body"></div>
@@ -400,7 +399,7 @@ body {
 
 </div>
 
-<!-- RIGHT PANEL -->
+
 <div class="right-panel">
   <button onclick="kiss()">💋 Kiss</button>
   <button onclick="hug()">🤗 Hug</button>
@@ -408,7 +407,7 @@ body {
   <button onclick="exitGame()">🚪 Exit</button>
 </div>
 
-<!-- 🔥 NEW SCRIPT GOES HERE -->
+
 <script>
 let cakeCut = false;
 let animationRunning = false;
@@ -422,13 +421,13 @@ function floatEmoji(type) {
   if (type === "hug") emojis = ["🤗", "💞", "💕", "❤️"];
   if (type === "heart") emojis = ["💖", "💘", "💕", "❤️"];
 
-  for (let i = 0; i < 20; i++) {   // 👈 MANY EMOJIS
+  for (let i = 0; i < 30; i++) {   
     let emoji = document.createElement("div");
     emoji.className = "emoji";
 
     emoji.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
 
-    // Random positions around center
+    
     emoji.style.left = (window.innerWidth / 2 + (Math.random() * 200 - 100)) + "px";
     emoji.style.bottom = (200 + Math.random() * 100) + "px";
 
@@ -447,10 +446,10 @@ function moveCloser(type) {
   left.style.left = "40%";
   right.style.right = "40%";
 
-  // Start emoji explosion
+  
   floatEmoji(type);
 
-  // Stay close for 5 seconds
+  
   setTimeout(() => {
     left.style.left = "28%";
     right.style.right = "28%";

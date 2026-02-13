@@ -43,7 +43,6 @@ img {
   border-radius: 15px;
 }
 
-/* Pumping heart */
 .heart {
   font-size: 80px;
   animation: pump 1s infinite;
@@ -56,12 +55,10 @@ img {
   100% { transform: scale(1); }
 }
 
-/* Moving No button */
 #noBtn {
   position: absolute;
 }
 
-/* Wriggling sticker */
 .sticker {
   position: fixed;
   bottom: 20px;
@@ -77,4 +74,52 @@ img {
   50% { transform: rotate(-8deg); }
   75% { transform: rotate(4deg); }
   100% { transform: rotate(0deg); }
+}
+
+@media (max-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .dinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .cake {
+    width: 180px !important;
+    height: auto !important;
+    margin: 20px 0;
+  }
+
+  
+  .cake.cut .cake-top {
+    transform: translateX(-25px) rotate(-5deg);
+  }
+
+  .cake.cut .cake-bottom {
+    transform: translateX(25px) rotate(5deg);
+  }
+
+  
+  .stickman {
+    transform: scale(0.75);
+    position: relative !important;
+    margin: 10px 0;
+  }
+
+  
+  .actions,
+  .button-panel,
+  .menu {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    margin-top: 20px;
+    width: 90%;
+  }
+
 }
