@@ -123,7 +123,7 @@ body {
 
 
 .table {
-  width: 300px;
+  width: 530px;
   height: 25px;
   background: #8d5524;
   position: absolute;
@@ -137,7 +137,7 @@ body {
 
 .candle {
   width: 8px;
-  height: 35px;
+  height: 40px;
   background: white;
   position: absolute;
   bottom: 205px;
@@ -170,8 +170,8 @@ body {
 .pizza {
   width: 0;
   height: 0;
-  border-left: 28px solid transparent;
-  border-right: 28px solid transparent;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
   border-bottom: 50px solid #f4a261;
   position: absolute;
   bottom: 205px;
@@ -187,7 +187,7 @@ body {
   width: 12px;
   height: 12px;
   background: #d62828;
-  border-radius: 50%;
+  border-radius: 60%;
   box-shadow:
     18px 8px 0 #d62828,
     5px 20px 0 #d62828,
@@ -195,8 +195,8 @@ body {
 }
 
 
-.pizza.left { left: 40%; }
-.pizza.right { right: 40%; }
+.pizza.left { left: 35%; }
+.pizza.right { right: 35%; }
 
 
 
@@ -272,7 +272,7 @@ body {
   bottom: 180px;
   width: 120px;
   height: 200px;
-  transition: left 0.5s ease, right 0.5s ease;
+
 
 }
 
@@ -445,13 +445,13 @@ function moveCloser(type) {
   let left = document.getElementById("leftMan");
   let right = document.getElementById("rightMan");
 
-  left.style.left = "50%";
-  right.style.right = "50%";
+  left.style.left = "45%";
+  right.style.right = "45%";
 
   
   floatEmoji(type);
 
-  
+  // Stay close for 5 seconds
   setTimeout(() => {
     left.style.left = "28%";
     right.style.right = "28%";
